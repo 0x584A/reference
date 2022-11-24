@@ -14,63 +14,64 @@ intro: |
 ---
 
 
-## Common Gobuster Commands
+## Common Gobuster Commands {.cols-2}
 
-### dir Mode
-
-dir Mode
-
-```bash
-gobuster dir -u https://example.com -w ~/wordlists/shortlist.txt
-```
-
-With content length
-
-```bash
-gobuster dir -u https://example.com -w ~/wordlists/shortlist.txt -l
-```
-
-### dns Mode
+### dns Mode {.row-span-2}
 
 dns Mode
 
-```bash
+```bash {.wrap}
 gobuster dns -d example.com -t 50 -w common-names.txt
 ```
 
-```bash
+```bash {.wrap}
 gobuster dns -d example.com-w ~/wordlists/subdomains.txt
 ```
 
 With Show IP
 
-```bash
+```bash {.wrap}
 gobuster dns -d example.com -w ~/wordlists/subdomains.txt -i
 ```
 
 Base domain validation warning when the base domain fails to resolve
 
-```bash
+```bash {.wrap}
 gobuster dns -d example.com -w ~/wordlists/subdomains.txt -i
 ```
 
 Wildcard DNS is also detected properly:
 
-```bash
+```bash {.wrap}
 gobuster dns -d 0.0.1.xip.io -w ~/wordlists/subdomains.txt
 ```
+
+### dir Mode
+
+dir Mode
+
+```bash {.wrap}
+gobuster dir -u https://example.com -w ~/wordlists/shortlist.txt
+```
+
+With content length
+
+```bash {.wrap}
+gobuster dir -u https://example.com -w ~/wordlists/shortlist.txt -l
+```
+
 
 ### vhost Mode
 
 vhost Mode
 
-```bash
+```bash {.wrap}
 gobuster vhost -u https://example.com -w common-vhosts.txt
 ```
 
 s3 Mode
 
-```bash
+```bash {.wrap}
 gobuster s3 -w bucket-names.txt
 ```
 

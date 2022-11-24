@@ -176,7 +176,7 @@ The `-s` switch determines the type of scan to perform.
 | **-sC**  | Scan with default NSE scripts. Considered useful for discovery and safe   |
 | **--script default**   | Scan with default NSE scripts. Considered useful for discovery and safe   |
 
-## Examples
+## Examples {.cols-1}
 
 ### Useful NSE Script Examples
 

